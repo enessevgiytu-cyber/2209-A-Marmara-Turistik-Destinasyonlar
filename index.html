@@ -1,18 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" >
-<head>
-  <meta charset="UTF-8">
-  <title>Marmaradestinasyonlar.12.5</title>
-  
-
-</head>
-<body>
-<!-- partial:index.partial.html -->
-<!DOCTYPE html>
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <title>Marmara Haritası - Üst Alt Paneller ve Orta Hamburger Butonları</title>
+  <title>Marmara Haritası - Tam Kod (Kısa Örnek Veri)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
@@ -23,7 +13,7 @@
     #map {
       position: absolute;
       top: 0;
-      bottom: 0; /* alt panel yüksekliğine göre */
+      bottom: 0;
       left: 0; right: 0;
       z-index: 1;
       transition: top 0.3s ease, bottom 0.3s ease;
@@ -214,34 +204,6 @@
     #info-icon:hover {
       background-color: rgba(255, 255, 255, 1);
     }
-
-    /* Responsive */
-    @media (max-width: 600px) {
-      #filter-panel, #location-panel {
-        height: auto;
-        padding: 10px;
-        flex-wrap: wrap;
-        gap: 10px;
-      }
-      #filter-panel label, #filter-panel select, #filter-panel button {
-        min-width: auto;
-        width: 100%;
-      }
-      #location-panel button {
-        font-size: 16px;
-      }
-      #route-panel {
-        width: 90%;
-        right: 5%;
-        bottom: 180px;
-      }
-      #hamburger-left, #hamburger-right {
-        width: 36px;
-        height: 36px;
-        font-size: 28px;
-        line-height: 36px;
-      }
-    }
   </style>
 </head>
 <body>
@@ -255,14 +217,7 @@
       <option value="İSTANBUL">İSTANBUL</option>
       <option value="EDİRNE">EDİRNE</option>
       <option value="KIRKLARELİ">KIRKLARELİ</option>
-      <option value="TEKİRDAĞ">TEKİRDAĞ</option>
-      <option value="ÇANAKKALE">ÇANAKKALE</option>
-      <option value="BALIKESİR">BALIKESİR</option>
-      <option value="BURSA">BURSA</option>
-      <option value="YALOVA">YALOVA</option>
       <option value="KOCAELİ">KOCAELİ</option>
-      <option value="SAKARYA">SAKARYA</option>
-      <option value="BİLECİK">BİLECİK</option>
     </select>
 
     <label for="layer-filter">Kategori Seç:</label>
@@ -289,7 +244,7 @@
     <div id="route-details"></div>
     <div style="margin-top:10px;display:flex;gap:10px;justify-content:flex-end;">
       <button id="open-google-maps-route" style="padding:5px 10px;cursor:pointer;background:#4285F4;color:#fff;border:none;border-radius:4px;">Google Haritalar'da Aç</button>
-      <button id="close-route" style="padding:5px 10px;cursor:pointer;">Rota Panelini Kapat</button>
+      <button id="close-route" style="padding:5px 10px;">Rota Panelini Kapat</button>
     </div>
   </div>
 
@@ -304,7 +259,6 @@
 
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
       attribution: '&copy; <a href="https://carto.com/">CARTO</a>',
-      subdomains: 'abcd',
       maxZoom: 19
     }).addTo(map);
 
@@ -318,8 +272,8 @@
     const historicalMarkers = [];
     const hotelsMarkers = [];
 
-    // Verilerinizi aşağıdaki dizilere yapıştırınız:
-   const parks = [
+    // Örnek konumlar (her kategoriden 5'er)
+    const parks = [
       { coords: [40.973822553266200, 28.783344683967600], city: "İSTANBUL", name: "FLORYA ATATÜRK DENİZ KÖŞKÜ" },
 { coords: [41.110609287791400, 29.204447267036800], city: "İSTANBUL", name: "POLONEZKÖY TABİAT PARKI" },
 { coords: [41.079210346182200, 29.067327767034900], city: "İSTANBUL", name: "KÜÇÜKSU MİLLET PARKI" },
@@ -1396,7 +1350,7 @@
       // Diğer tarihi yer verileri...
     ];
     const hotels = [
-      { coords: [41.04116957373599, 28.997679411936204], city: "İSTANBUL", name: "Swissotel The Bosphorus" },
+      { coords: [41.046, 29.001], city: "İSTANBUL", name: "Swissotel The Bosphorus" },
       { coords: [40.68490755, 30.12684445], city: "KOCAELİ", name: "Maşukiye Otel" },
       { coords: [40.18376975, 29.06308241], city: "BURSA", name: "Bursa Otel" },
       { coords: [41.82386012, 27.9649215], city: "KIRKLARELİ", name: "Kırklareli Otel" },
@@ -1414,6 +1368,36 @@
       { coords: [40.636181976278436, 29.235103899986807], city: "YALOVA", name: "Crowne Plaza Yalova by IHG" },
       { coords: [39.90235384737348, 30.03351752431158], city: "BALIKESİR", name: "Grand Çalı Otel" },
     ];
+
+     // Şehir bilgileri ve linkleri
+    const cityLinks = {
+      "İSTANBUL": "https://tr.wikipedia.org/wiki/%C4%B0stanbul",
+      "EDİRNE": "https://tr.wikipedia.org/wiki/Edirne",
+      "KIRKLARELİ": "https://tr.wikipedia.org/wiki/K%C4%B1rklareli",
+      "TEKİRDAĞ": "https://tr.wikipedia.org/wiki/Tekirda%C4%9F",
+      "ÇANAKKALE": "https://tr.wikipedia.org/wiki/%C3%87anakkale",
+      "BALIKESİR": "https://tr.wikipedia.org/wiki/Bal%C4%B1kesir",
+      "BURSA": "https://tr.wikipedia.org/wiki/Bursa",
+      "YALOVA": "https://tr.wikipedia.org/wiki/Yalova",
+      "KOCAELİ": "https://tr.wikipedia.org/wiki/Kocaeli",
+      "SAKARYA": "https://tr.wikipedia.org/wiki/Sakarya",
+      "BİLECİK": "https://tr.wikipedia.org/wiki/Bilecik"
+    };
+
+    // Video bağlantıları
+    const videoLinks = {
+      "İSTANBUL": "https://drive.google.com/file/d/1HY18jKbOyIMlZVzRqvRCBqEyKcvYkUcQ/view",
+      "EDİRNE": "https://drive.google.com/file/d/1EVbFuSqnBgyltfgEUmhC8P9leeRAwRX5/view",
+      "KIRKLARELİ": "https://drive.google.com/file/d/15M63T96c097teZUlFCGGB0PkXB23tQpS/view",
+      "TEKİRDAĞ": "https://drive.google.com/file/d/1QclXblLpjpzv_FlpqK3SexbYIU3TVlbp/view",
+      "ÇANAKKALE": "https://drive.google.com/file/d/1h8yVbR0T9zIp8bwU8GyArm67eM0sHOoB/view",
+      "BALIKESİR": "https://drive.google.com/file/d/1cgzDC_VNx1EolmWGRU5Vq-0lZTE0fLDb/view",
+      "BURSA": "https://drive.google.com/file/d/1wujFXing9x8JF1Zcdzx9CBfp23btq8eK/view",
+      "YALOVA": "https://drive.google.com/file/d/1AYCUxjxQKJ7xHtTheuW8ota1z9z5KwXN/view",
+      "KOCAELİ": "https://drive.google.com/file/d/1Ppe3aX2QtVoFoQphY7Mwt-JgZdb1HCEI/view",
+      "SAKARYA": "https://drive.google.com/file/d/15ZXrVocySOJeE_Zxpz9WEhH9FRRVtGEX/view",
+      "BİLECİK": "https://drive.google.com/file/d/17kbnbQjWPHtqErny7QF7sHaWARAYu-qV/view?usp=sharing"
+    };
 
     function createPopupContent(name, city, lat, lng) {
       return `
@@ -1492,10 +1476,20 @@
     }
 
     function showCityInfo(city) {
-      alert(city + " hakkında bilgi almak için Wikipedia sayfasına gidin.");
+      const url = cityLinks[city];
+      if (url) {
+        window.open(url, '_blank');
+      } else {
+        alert(city + " için bilgi bulunamadı.");
+      }
     }
     function openVideo(city) {
-      alert(city + " için sesli bilgi oynatılıyor.");
+      const videoUrl = videoLinks[city];
+      if (videoUrl) {
+        window.open(videoUrl, '_blank');
+      } else {
+        alert(city + " için video bulunamadı.");
+      }
     }
     function openGoogleMaps(lat, lng) {
       const url = `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
@@ -1733,9 +1727,5 @@
     applyFilters();
     adjustMapBounds();
   </script>
-</body>
-</html>
-<!-- partial -->
-  
 </body>
 </html>
